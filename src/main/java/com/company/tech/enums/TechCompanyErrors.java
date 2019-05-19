@@ -2,6 +2,10 @@ package com.company.tech.enums;
 
 public enum TechCompanyErrors {
 	
+	/*
+	 * this enum handle tech company application error messages. 
+	 * 
+	 */
 	COMPANY_ALREADY_EXISTS("001","Company already exist. Please try another company name."),
 	COMPANY_NOT_CREATED("002","Can not create company"),
 	COMPANY_CAN_NOT_FIND("003","Can not find company"),

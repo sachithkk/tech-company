@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CompanyRequest {
 	
+	/* request class for company */
+	
 	private String companyName;
 	private String address;
 	private String website;

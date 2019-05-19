@@ -19,6 +19,8 @@ public class TechGlobleException {
 	@ExceptionHandler(value = TechException.class)
 	public TechResponse handleGlobleException(TechException techException) {
 		
+		logger.info(techException.getErrorCode()+ " "+ techException.getErrorMessage());
+		
 		TechError techError = new TechError();
 		techError.setCode(techException.getErrorCode());
 		techError.setMessage(techException.getErrorMessage());

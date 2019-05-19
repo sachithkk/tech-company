@@ -2,6 +2,8 @@ package com.company.tech.exception;
 
 public class TechError {
 	
+	/* this class use for set company application run time errors. */
+	
 	private String code;
 	private String message;
 	

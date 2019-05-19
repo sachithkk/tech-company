@@ -35,6 +35,10 @@ public class CompanyServiceImpl implements CompanyService{
 		newCompany.setStatus(CompanyStatus.ACTIVE.getStatus());
 		newCompany.setDescription(companyRequest.getDescription());
 		
+		/*
+		 * Before register new company check that company already register or not
+		 * company already registered show error message to user.
+		 */
 		if(companyDao.findCompanyByName(companyRequest.getCompanyName()) == null) {
 			Company company = companyDao.addNewCompany(newCompany);
 			HashMap<String, String> result = new HashMap<>();
@@ -56,6 +60,10 @@ public class CompanyServiceImpl implements CompanyService{
 	@Override
 	public HashMap<String, String> updateCompany(int id , CompanyRequest companyRequest) {
 		
+		/* 
+		 * Before update a particular company check that company available.
+		 * If Company available update , If not show error message to user.  
+		 */
 		if(companyDao.findCompanyById(id) != null) {
 			
 			Company company = companyDao.findCompanyById(id);
@@ -86,6 +94,10 @@ public class CompanyServiceImpl implements CompanyService{
 		
 		List<Company> companies = companyDao.getCompanies();
 		
+		/* 
+		 * Display register company.
+		 * If there are no any company show error message to user. 
+		 */
 		if(companies != null && !companies.isEmpty()) {
 			
 			List<Company> companiesList = new ArrayList<>();
@@ -133,6 +145,12 @@ public class CompanyServiceImpl implements CompanyService{
 		
 		Company company = companyDao.findCompanyById(companyId);
 		
+		/*
+		 * When user going to delete a particular company check that company available
+		 * If company available select that company and change status as INACTIVE
+		 * In our TECH Company application we do not user delete query in order to change company status.
+		 * 
+		 */
 		if(company != null && company.getStatus().equalsIgnoreCase("ACTIVE")) {
 			
 			company.setStatus(CompanyStatus.IN_ACTIVE.getStatus());

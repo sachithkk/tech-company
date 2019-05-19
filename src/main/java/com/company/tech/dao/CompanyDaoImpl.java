@@ -11,13 +11,17 @@ import javax.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 
 import com.company.tech.domain.Company;
-import com.company.tech.domain.Image;
 
 @Repository
 public class CompanyDaoImpl implements CompanyDao{
 
 	@PersistenceContext
 	EntityManager em;
+	
+	/*
+	 * This class interact with our database.
+	 * EntityManager helps to handle queries and We used criteria query
+	 */
 	
 	@Override
 	public Company addNewCompany(Company company) {
@@ -115,18 +119,4 @@ public class CompanyDaoImpl implements CompanyDao{
 		}
 		
 	}
-
-	@Override
-	public Image uploadImage(Image image) {
-		
-		try {
-			em.persist(image);
-			return image;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-		
-	}
-
 }

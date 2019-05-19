@@ -13,5 +13,4 @@ public interface CompanyDao {
 	public Company findCompanyById(int id);
 	public List<Company> getCompanies();
 	public List<Company> getInactiveCompanies();
-	public Image uploadImage(Image image);
 }

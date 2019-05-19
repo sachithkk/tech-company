@@ -1,14 +1,9 @@
 package com.company.tech.contoller;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.transaction.Transactional;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.company.tech.dao.CompanyDao;
 import com.company.tech.domain.Company;
-import com.company.tech.domain.Image;
 import com.company.tech.request.CompanyRequest;
 import com.company.tech.response.TechResponse;
 import com.company.tech.service.CompanyService;
@@ -27,14 +20,14 @@ import com.company.tech.service.CompanyService;
 @RequestMapping(value = "/tech/companies")
 public class CompanyController {
 	
+	/*
+	 * all request come into this controller class.
+	 */
+	
 	@Autowired
 	CompanyService companyService;
 	
-	@Autowired
-	CompanyDao companyDao;
-	
-	Log logger = LogFactory.getLog(CompanyController.class);
-	
+	/* method for create new company */
 	@RequestMapping(method = RequestMethod.POST , value = "/create")
 	public TechResponse addCompany(@RequestBody CompanyRequest companyRequest) {
 		
@@ -47,6 +40,7 @@ public class CompanyController {
 		return techResponse;
 	}
 	
+	/* method for update existing company */
 	@RequestMapping(method = RequestMethod.PUT , value = "/{id}/update")
 	public TechResponse updateCompany(@PathVariable("id") int id , @RequestBody CompanyRequest companyRequest) {
 		
@@ -59,6 +53,7 @@ public class CompanyController {
 		return techResponse;
 	}
 	
+	/* method for display all registered companies */
 	@RequestMapping(method = RequestMethod.GET)
 	public TechResponse getAllCompany() {
 		
@@ -71,6 +66,7 @@ public class CompanyController {
 		return techResponse;
 	}
 	
+	/* method for get deleted companies */
 	@RequestMapping(method = RequestMethod.GET , value = "/getInactive")
 	public TechResponse getInactiveCompany() {
 		
@@ -84,6 +80,7 @@ public class CompanyController {
 		
 	}
 	
+	/* method for delete a particular companys */
 	@RequestMapping(method = RequestMethod.PUT , value = "/{companyId}/deleteCompany")
 	public TechResponse deleteCompany(@PathVariable("companyId") int companyId) {
 		
@@ -92,32 +89,6 @@ public class CompanyController {
 		TechResponse techResponse = new TechResponse();
 		techResponse.setResponseCode("200");
 		techResponse.setResponseObject(hashMap);
-		
-		return techResponse;
-	}
-	
-	@RequestMapping(method = RequestMethod.POST , value="/uploadImage")
-	@Transactional
-	public TechResponse uploadImage() {
-		
-		File path = new File("C:\\Users\\SachithT.LOITL-ITSE39\\Pictures\\download.jpg");
-		byte[] logo;
-		
-		try {
-			logo = Base64.decodeBase64(path.toString());
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-			return null;
-		}
-		
-		Image image1 = new Image();
-		image1.setPicture(logo);
-		
-		Image image = companyDao.uploadImage(image1);
-		
-		TechResponse techResponse = new TechResponse();
-		techResponse.setResponseCode("200");
-		techResponse.setResponseObject(image);
 		
 		return techResponse;
 	}
