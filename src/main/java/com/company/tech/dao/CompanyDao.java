@@ -1,9 +1,12 @@
+/*
+ * Created By Sachith Tharaka 
+ */
+
 package com.company.tech.dao;
 
 import java.util.List;
 
 import com.company.tech.domain.Company;
-import com.company.tech.domain.Image;
 
 public interface CompanyDao {
 	

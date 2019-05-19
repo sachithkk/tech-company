@@ -1,3 +1,7 @@
+/*
+ * Created by Sajith Priyankara
+ */
+
 package com.company.tech.response;
 
 public class TechResponse {

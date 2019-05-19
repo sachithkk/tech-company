@@ -1,14 +1,15 @@
+/*
+ *  Created by Sajith Priyankara
+ */
+
 package com.company.tech.contoller;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.company.tech.dao.CompanyDao;
 import com.company.tech.domain.Company;
-import com.company.tech.domain.Image;
 import com.company.tech.request.CompanyRequest;
 import com.company.tech.response.TechResponse;
 import com.company.tech.service.CompanyService;
